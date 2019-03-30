@@ -24,5 +24,5 @@ export class AppComponent implements OnInit {
     // this.navigationService.versionInfo.subscribe((vi) => (this.versionInfo = vi));
     // console.log(this.footerNodes);
   }
-  title = 'ng-part-sidenav';
+
 }
