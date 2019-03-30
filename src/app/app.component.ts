@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostBinding, HostListener, OnInit,
+  QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
@@ -8,6 +9,9 @@ import { MatSidenav } from '@angular/material/sidenav';
 })
 export class AppComponent implements OnInit {
   isTransitioning = true;
+
+  // Disable all Angular animations for the initial render.
+  @HostBinding('@.disabled') isStarting = true;
 
   ngOnInit(): void {
     // 구독(subscribe) 설정
