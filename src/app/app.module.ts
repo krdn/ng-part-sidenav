@@ -17,7 +17,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { AppComponent } from './app.component';
 import { CustomIconRegistry, SVG_ICONS } from './shared/custom-icon-registry';
 
-import { environment } from 'src/environments/environment';
+import { environment } from '../environments/environment';
 
 // These are the hardcoded inline svg sources to be used by the `<mat-icon>` component.
 // tslint:disable: max-line-length
