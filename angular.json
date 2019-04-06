@@ -20,7 +20,21 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/generated",
+              "src/app/search/search-worker.js",
+              "src/pwa-manifest.json",
+              "src/google385281288605d160.html",
+              {
+                "glob": "custom-elements.min.js",
+                "input": "node_modules/@webcomponents/custom-elements",
+                "output": "/assets/js"
+              },
+              {
+                "glob": "native-shim.js",
+                "input": "node_modules/@webcomponents/custom-elements/src",
+                "output": "/assets/js"
+              }
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",

@@ -10,6 +10,7 @@
     </aio-notification> -->
   </mat-toolbar-row>
   <mat-toolbar-row>
+    <!-- 햄버거 버튼 -->
     <button mat-button class="hamburger" [class.starting]="isStarting" (click)="sidenav.toggle()" title="Docs menu">
       <mat-icon svgIcon="menu"></mat-icon>
     </button>
@@ -19,7 +20,7 @@
       <img *ngSwitchDefault src="assets/images/logos/angular/shield-large.svg" width="37" height="40" title="Home"
         alt="Home">
     </a>
-    <!-- <aio-top-menu *ngIf="isSideBySide" [nodes]="topMenuNodes"></aio-top-menu> -->
+    <aio-top-menu *ngIf="isSideBySide" [nodes]="topMenuNodes"></aio-top-menu>
     <!-- <aio-search-box class="search-container" #searchBox (onSearch)="doSearch($event)" (onFocus)="doSearch($event)">
     </aio-search-box> -->
     <div class="toolbar-external-icons-container">
@@ -33,3 +34,36 @@
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
+
+
+<mat-sidenav-container class="sidenav-container" [class.starting]="isStarting" [class.has-floating-toc]="hasFloatingToc" role="main">
+
+  <mat-sidenav [ngClass]="{'collapsed': !isSideBySide}" #sidenav class="sidenav" [mode]="mode" [opened]="isOpened" (openedChange)="updateHostClasses()">
+    <aio-nav-menu *ngIf="!isSideBySide" [nodes]="topMenuNarrowNodes" [currentNode]="currentNodes?.TopBarNarrow" [isWide]="false"></aio-nav-menu>
+    <aio-nav-menu [nodes]="sideNavNodes" [currentNode]="currentNodes?.SideNav" [isWide]="isSideBySide"></aio-nav-menu>
+
+    <div class="doc-version">
+      <!-- <aio-select (change)="onDocVersionChange($event.index)" [options]="docVersions" [selected]="currentDocVersion"></aio-select> -->
+    </div>
+  </mat-sidenav>
+
+  <main class="sidenav-content" [id]="pageId" role="main">
+    <!-- <aio-mode-banner [mode]="deployment.mode" [version]="versionInfo"></aio-mode-banner>
+    <aio-doc-viewer [class.no-animations]="isStarting" [doc]="currentDocument" (docReady)="onDocReady()" (docRemoved)="onDocRemoved()" (docInserted)="onDocInserted()" (docRendered)="onDocRendered()">
+    </aio-doc-viewer>
+    <aio-dt *ngIf="dtOn" [(doc)]="currentDocument"></aio-dt> -->
+  </main>
+
+</mat-sidenav-container>
+
+
+
+<!--
+  Work-around to ensure that the `.woff2` file for the 'Material Icons' font will always be fetched.
+  This allows the SW to cache the file (even if there are no icons in the current page) and ensure
+  material icons on other pages are displayed correctly in offline mode.
+  (Note: Instantiate lazily to avoid affecting the initial rendering.)
+-->
+<div class="cdk-visually-hidden" *ngIf="!isStarting">
+    <mat-icon>&nbsp;</mat-icon>
+  </div>

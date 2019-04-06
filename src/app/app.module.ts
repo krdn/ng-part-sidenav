@@ -14,10 +14,37 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { AppComponent } from './app.component';
-import { CustomIconRegistry, SVG_ICONS } from './shared/custom-icon-registry';
+import { AppComponent } from 'app/app.component';
+import { CustomIconRegistry, SVG_ICONS } from 'app/shared/custom-icon-registry';
+import { Deployment } from 'app/shared/deployment.service';
+// import { DocViewerComponent } from 'app/layout/doc-viewer/doc-viewer.component';
+// import { DtComponent } from 'app/layout/doc-viewer/dt.component';
+// import { ModeBannerComponent } from 'app/layout/mode-banner/mode-banner.component';
+import { GaService } from 'app/shared/ga.service';
+import { Logger } from 'app/shared/logger.service';
+import { LocationService } from 'app/shared/location.service';
+import { NavigationService } from 'app/navigation/navigation.service';
+import { DocumentService } from 'app/documents/document.service';
+import { SearchService } from 'app/search/search.service';
+import { TopMenuComponent } from 'app/layout/top-menu/top-menu.component';
+// import { FooterComponent } from 'app/layout/footer/footer.component';
+import { NavMenuComponent } from 'app/layout/nav-menu/nav-menu.component';
+import { NavItemComponent } from 'app/layout/nav-item/nav-item.component';
+import { ReportingErrorHandler } from 'app/shared/reporting-error-handler';
+import { ScrollService } from 'app/shared/scroll.service';
+import { ScrollSpyService } from 'app/shared/scroll-spy.service';
+import { SearchBoxComponent } from 'app/search/search-box/search-box.component';
+// import { NotificationComponent } from 'app/layout/notification/notification.component';
+import { TocService } from 'app/shared/toc.service';
+import { CurrentDateToken, currentDateProvider } from 'app/shared/current-date';
+import { WindowToken, windowProvider } from 'app/shared/window';
+
+// import { CustomElementsModule } from 'app/custom-elements/custom-elements.module';
+import { SharedModule } from 'app/shared/shared.module';
+import { SwUpdatesModule } from 'app/sw-updates/sw-updates.module';
 
 import { environment } from '../environments/environment';
+
 
 // These are the hardcoded inline svg sources to be used by the `<mat-icon>` component.
 // tslint:disable: max-line-length
@@ -116,40 +143,40 @@ export const svgIconProviders = [
     MatProgressBarModule,
     MatSidenavModule,
     MatToolbarModule,
-    // SwUpdatesModule,
+    SwUpdatesModule,
     // SharedModule,
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
   declarations: [
-    AppComponent
+    AppComponent,
     // DocViewerComponent,
     // DtComponent,
     // FooterComponent,
     // ModeBannerComponent,
-    // NavMenuComponent,
-    // NavItemComponent,
+    NavMenuComponent,
+    NavItemComponent,
     // SearchBoxComponent,
     // NotificationComponent,
-    // TopMenuComponent,
+    TopMenuComponent
   ],
   providers: [
     // Deployment,
     // DocumentService,
     // { provide: ErrorHandler, useClass: ReportingErrorHandler },
-    // GaService,
-    // Logger,
+    GaService,
+    Logger,
     Location,
     { provide: LocationStrategy, useClass: PathLocationStrategy },
-    // LocationService,
+    LocationService,
     { provide: MatIconRegistry, useClass: CustomIconRegistry },
-    // NavigationService,
+    NavigationService,
     // ScrollService,
     // ScrollSpyService,
     // SearchService,
     svgIconProviders,
     // TocService,
     // { provide: CurrentDateToken, useFactory: currentDateProvider },
-    // { provide: WindowToken, useFactory: windowProvider },
+    { provide: WindowToken, useFactory: windowProvider },
   ],
   bootstrap: [ AppComponent ]
 })
